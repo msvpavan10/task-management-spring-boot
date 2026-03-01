@@ -20,6 +20,11 @@ public class TaskService {
         this.dtoMapping = dtoMapping;
     }
 
+    public TaskResponseDTO getTaskById(long id) {
+        Task task = taskRepository.findById(id).orElse(null);
+        return task == null ? null : dtoMapping.mapToTaskResponseDTO(task);
+    }
+
     public List<TaskResponseDTO> getAllTasks() {
         return taskRepository.findAll()
                     .stream()
@@ -36,10 +41,5 @@ public class TaskService {
 
         Task savedTask = taskRepository.save(task);
         return dtoMapping.mapToTaskResponseDTO(savedTask);
-    }
-
-    public TaskResponseDTO getTaskById(long id) {
-        Task task = taskRepository.findById(id).orElse(null);
-        return task == null ? null : dtoMapping.mapToTaskResponseDTO(task);
     }
 }
