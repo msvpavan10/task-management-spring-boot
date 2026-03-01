@@ -1,0 +1,18 @@
+package org.example.taskmanagement.dto;
+
+import lombok.Builder;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDate;
+
+@Getter
+@Setter
+@Builder
+public class TaskResponseDTO {
+    private Long id;
+    private String title;
+    private String description;
+    private boolean completed;
+    private LocalDate createdAt;
+}
